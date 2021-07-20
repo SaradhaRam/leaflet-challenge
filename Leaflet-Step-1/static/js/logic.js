@@ -1,4 +1,4 @@
-// Define streetmap and darkmap layers
+// Define layers
 var mapLayer = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
     attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
     tileSize: 512,
@@ -8,7 +8,7 @@ var mapLayer = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/
     accessToken: API_KEY
 });
 
-// Create our map, giving it the streetmap and earthquakes layers to display on load
+// Create our map, to display on load
 var myMap = L.map("map", {
     center: [34.30, -106.1],
     zoom: 5,
@@ -20,9 +20,8 @@ mapLayer.addTo(myMap);
 var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
 d3.json(queryUrl, function(data) {
 
-    /// We will create three function. 
-    // function 1 for style, function 2 for color and function 3 for radiues
 
+    // function for style  
     function mapStyle(feature) {
         return {
             opacity: 1,
@@ -35,6 +34,7 @@ d3.json(queryUrl, function(data) {
         };
     }
 
+    //function for color
     function mapColor(mag) {
         switch (true) {
             case mag > 5:
@@ -51,7 +51,7 @@ d3.json(queryUrl, function(data) {
                 return "#2c99ea";
         }
     }
-
+    //function for radius
     function mapRadius(mag) {
         if (mag === 0) {
             return 1;
@@ -71,7 +71,7 @@ d3.json(queryUrl, function(data) {
         style: mapStyle,
 
         onEachFeature: function(feature, layer) {
-            layer.bindPopup("Magnitude: " + feature.properties.mag + "<br>Location: " + feature.properties.place);
+            layer.bindPopup("<strong> Magnitude: </strong>" + feature.properties.mag + "<br><strong>Location: </strong>" + feature.properties.place);
 
         }
     }).addTo(myMap);
@@ -87,7 +87,7 @@ d3.json(queryUrl, function(data) {
         var colors = ["#2c99ea", "#2ceabf", "#92ea2c", "#d5ea2c", "#eaa92c", "#ea2c2c"];
 
 
-        // loop thry the intervals of colors to put it in the label
+        // Iterate the colors to put it in the labels
         for (var i = 0; i < grades.length; i++) {
             div.innerHTML +=
                 "<i style='background: " + colors[i] + "'></i> " +
