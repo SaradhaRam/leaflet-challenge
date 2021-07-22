@@ -1,4 +1,18 @@
+
+
 # leaflet-challenge
+
+## To Run Leaflet-step-1 
+>> Add mapbox API key in the config file.
+>> In the command window, navigate to the path and select the Leaflet-step-1 directory and type "python -m http.server"
+>> like wise for the Leaflet-step-2 directory.
+>> To see the result in the browser type "localhost:8000" (or any port number)
+
+## To Run Leaflet-step-2
+>> Add mapbox API key in the config file.
+>> In the command window, navigate to the path and select the Leaflet-step-2 directory and type "python -m http.server"
+>> To see the result in the browser type "localhost:8000" (or any port number)
+
 
 # Leaflet - Visualizing Data with Leaflet
 
